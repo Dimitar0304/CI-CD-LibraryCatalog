@@ -1,6 +1,7 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect,chromium } = require('@playwright/test');
 
 test('Verify "All Books" link is visible', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000');
 
   await page.waitForSelector('nav.navbar');
@@ -12,6 +13,7 @@ test('Verify "All Books" link is visible', async ({ page }) => {
 });
 
 test('Verify "Login" button is visible', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000');
 
   await page.waitForSelector('nav.navbar');
@@ -24,6 +26,7 @@ test('Verify "Login" button is visible', async ({ page }) => {
 });
 
 test('Verify "All Books" link is visible after user login', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
@@ -37,6 +40,7 @@ test('Verify "All Books" link is visible after user login', async ({ page }) => 
 });
 
 test('Login with valid credentials', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
@@ -49,6 +53,7 @@ test('Login with valid credentials', async ({ page }) => {
 });
 
 test('Login with empty input fields', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
   await page.click('input[type="submit"]');
 
@@ -63,6 +68,7 @@ test('Login with empty input fields', async ({ page }) => {
 });
 
 test('Add book with correct data', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
@@ -90,6 +96,7 @@ test('Add book with correct data', async ({ page }) => {
 });
 
 test('Add book with empty title field', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
@@ -121,6 +128,7 @@ test('Add book with empty title field', async ({ page }) => {
 });
 
 test('Login and verify all books are displayed', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
@@ -139,6 +147,7 @@ test('Login and verify all books are displayed', async ({ page }) => {
 });
 
 test('Login and navigate to Details page', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
@@ -162,6 +171,7 @@ test('Login and navigate to Details page', async ({ page }) => {
 });
 
 test('Verify visibility of Logout button after user login', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
@@ -176,6 +186,7 @@ test('Verify visibility of Logout button after user login', async ({ page }) => 
 });
 
 test('Verify redirection of Logout link after user login', async ({ page }) => {
+  const browser = await chromium.launch({ headless: true });
   await page.goto('http://localhost:3000/login');
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
