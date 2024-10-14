@@ -37,8 +37,34 @@ jobs:
     - name: Run UI tests
       run: npx playwright test 
 
-  deploy-be:
+    staging_be:
     needs: build_test
+    runs-on: ubuntu-latest
+    steps:
+        - name: Update the config 
+          run: echo "export const settings = {host:\"https://ci-cd-librarycatalog.onrender.com"}" > src/config.js
+        - uses: actions/checkout@v3
+        - uses: JorgeLNJunior/render-deploy@v1.4.4
+          with:
+            service_id: ${{ secrets.RENDER_SERVICE_BE_STAGING_ID }}
+            api_key: ${{ secrets.RENDER_API_KEY }}
+            wait_deploy: true
+
+    staging_fe:
+    needs: build_test
+    runs-on: ubuntu-latest
+    steps:
+    
+        - uses: actions/checkout@v3
+        - uses: JorgeLNJunior/render-deploy@v1.4.4
+          with:
+            service_id: ${{ secrets.RENDER_SERVICE_FE_STAGING_ID }}
+            api_key: ${{ secrets.RENDER_API_KEY }}
+            wait_deploy: true
+   
+
+    deploy_be:
+    needs: staging_be
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v3
@@ -47,8 +73,8 @@ jobs:
             service_id: ${{ secrets.RENDER_SERVICE_BE_ID }}
             api_key: ${{ secrets.RENDER_API_KEY }}
             wait_deploy: true
-  deploy-fe:
-    needs: build_test
+  deploy_fe:
+    needs: staging_fe
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v3
