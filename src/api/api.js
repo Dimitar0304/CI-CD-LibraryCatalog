@@ -1,4 +1,4 @@
-import * as config from '../src/config.js'
+import * as config from '../config.js'
 export const settings= config.settings;
 
 
