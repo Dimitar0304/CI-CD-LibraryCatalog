@@ -25,13 +25,16 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install 
 
+    - name: Update the config 
+      run: echo "export const settings = {host:\"http://localhost:3030\"}" > src/config.js
+
     - name: Start backend
       run:  npm run start:be &
      
     - name: Start frontend
       run:  npm run start:fe &
 
-    - name: Run Playwright tests
+    - name: Run UI tests
       run: npx playwright test 
 
    
