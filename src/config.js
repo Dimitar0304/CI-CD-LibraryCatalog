@@ -1,0 +1,1 @@
+export const settings = {host : "https://librarycatalog-d66s.onrender.com"}

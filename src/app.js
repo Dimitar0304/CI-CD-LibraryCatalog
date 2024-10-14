@@ -1,6 +1,7 @@
 import { render } from '../node_modules/lit-html/lit-html.js';
 import page from '../node_modules/page/page.mjs';
-
+import * as config from '../src/config.js'
+export const settings= config.settings;
 
 import { logout as apiLogout } from './api/api.js';
 
